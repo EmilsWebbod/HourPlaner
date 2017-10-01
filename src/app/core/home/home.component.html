@@ -1,0 +1,8 @@
+<h1>Home</h1>
+
+<md-select>
+ <md-option *ngFor="let branch of branches" [routerLink]="branch.name">
+  {{ branch.name }}
+ </md-option>
+</md-select>
+

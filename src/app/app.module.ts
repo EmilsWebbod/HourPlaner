@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import {AppRouterModule} from './router.module';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CoreModule} from './core/pages/core.module';
+import {CoreModule} from './core/core.module';
 import {ServiceModule} from './services/service.module';
 import {DefaultUrlSerializer, UrlSerializer, UrlTree} from '@angular/router';
 

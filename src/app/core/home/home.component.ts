@@ -1,6 +1,6 @@
 
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../../services/user.service';
+import {AppService} from '../../services/app.service';
 
 @Component({
   selector:    'app-home',
@@ -9,13 +9,11 @@ import {UserService} from '../../../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private _user: UserService) {}
+  branches: Array<any> = [];
 
-  ngOnInit() {}
+  constructor(private _app: AppService) {}
 
-  logout() {
-    this._user.logout().then(x => {
-      console.log(x);
-    });
+  ngOnInit() {
+    this._app.getBranches().then(x => this.branches = x);
   }
 }

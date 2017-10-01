@@ -1,0 +1,19 @@
+
+<app-register></app-register>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Name</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.username }}</td>
+      <td>{{ user.name || ''}}</td>
+      <td>{{ user_roles[user.state] }}</td>
+    </tr>
+  </tbody>
+</table>

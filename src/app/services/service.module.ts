@@ -5,6 +5,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {ServerService} from './server.service';
 import {ResponseService} from './response/response.service';
 import {UserService} from './user.service';
+import {AppService} from './app.service';
+import {BranchService} from '../core/branch/branch.service';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ export class ServiceModule {
       providers: [
         ResponseService,
         ServerService,
-        UserService
+        UserService,
+        AppService,
+        BranchService
       ]
     };
   }

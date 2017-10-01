@@ -6,11 +6,19 @@ const _ = require('ramda');
 
 const Schema = mongoose.Schema;
 
+export enum EUSER_STATE {
+  EMPLOYEE = 0,
+  LEADER = 1,
+  BOSS = 2
+}
+
 export interface IUserModel {
+  // Values
   _id?: string;
   username: string;
   created?: Date;
-  initUser: {username: string};
+  branch: string;
+  boss: number;
 }
 
 const userSchema = new Schema({
@@ -22,6 +30,10 @@ const userSchema = new Schema({
     minLength: 2,
     set: _.toLower
   },
+  name: {type: String, default: 'No Name'},
+  branch: {type: String, ref: 'branch', default: ''},
+  skills: {type: [{type: String}], default: []},
+  state: {type: Number, default: 0},
   created: {type: Date, default: Date.now()}
 });
 
@@ -35,7 +47,15 @@ userSchema.plugin(passportLocalMongoose, {
 
 export const User = mongoose.model<IUserModel>('user', userSchema);
 
-User.initUser = name => new User({username: name});
+User.initUser = (data, branch) => new User({
+  username: data.username,
+  branch: branch,
+  name: data.name || 'No name',
+  state: data.role || 0,
+  skills: data.skills || []
+});
+
+User.getUsers = branch => User.find({branch: branch}).exec();
 
 User.test = function() {
   return new Promise((res, rej) => {

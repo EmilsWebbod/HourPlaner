@@ -18,13 +18,15 @@ export interface IHandler {
  * W_ : Warning messages
  * E_ : Error messages
  * I_ : Wrong Input message
+ * D_ : Duplicates
  */
 export const MSG = {
   success:    'Success',
   I_default:  'Input did not match criteria',
   W_login:    'Username and Password did not match existing user',
   W_register: 'Failed to register user',
-  W_user_exist: 'User with username already exist'
+  W_user_exist: 'User with username already exist',
+  D_branch_name: 'Branch with name already exist'
 };
 
 export const Logger = require('winston');
@@ -72,7 +74,7 @@ export namespace Handler {
    * To add more ways to spesific error messages for user
    * Could also change it with res but will help to understand errors in ctrl.
    */
-  export const ctrlModelError = res => res;
+  export const ctrlModelError = res => json => res(json);
 
   export function success(msg: string = '', data: any = null): IHandler {
     return _json_result(EHANDLER_STATUS.SUCCESS, msg, data);

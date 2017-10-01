@@ -24,6 +24,7 @@ require('./init/passport')(app);
 /** Load api and all the routes */
 app.use('/api', require('./routes/api'));
 app.use('/api/user', require('./routes/user'));
+app.use('/api/branch', require('./routes/branch'));
 app.use('/', require('./routes/index'));
 
 // production error handler

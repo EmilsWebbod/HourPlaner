@@ -3,11 +3,21 @@
 <form #register_form="ngForm" ngNativeValidate (ngSubmit)="register(register_form)">
 
   <md-form-field>
-    <input mdInput ngModel name="username" placeholder="Username" required>
+    <input mdInput ngModel name="username" placeholder="Employee Code" required>
   </md-form-field>
 
   <md-form-field>
-    <input mdInput ngModel name="password" type="password" placeholder="Password" required>
+    <input mdInput ngModel name="name" placeholder="Name" required>
+  </md-form-field>
+
+  <md-select [ngModel]="role" name="role">
+    <md-option *ngFor="let role of roles; let i = index"
+               [value]="i"
+    >{{ role }}</md-option>
+  </md-select>
+
+  <md-form-field>
+    <input mdInput ngModel name="password" type="password" placeholder="PW Not required">
   </md-form-field>
 
   <button md-raised-button color="primary">Register</button>
