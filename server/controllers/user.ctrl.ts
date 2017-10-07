@@ -28,11 +28,17 @@ export namespace UserCtrl {
   export function register(data) { return new Promise(res => {
     if (!data.username && !data.branch) { return res(Handler.input(MSG.I_default)); }
     if (!data.password) { data.password = data.username; }
-    Branch.findOne({name: data.branch}).then(branch => {
-      if (!branch) { return res(Handler.input('No branch with name' + data.branch)); }
+
+    Branch.findOne({code: data.branch}).then(branch => {
+      if (!branch) { return res(Handler.input('No branch with code ' + data.branch)); }
+
       User.register(User.initUser(data, branch._id), data.password, (err, user) => {
         if (err || !user) { return Handler.ctrlError(res)(MSG.W_user_exist)(err); }
-        return res(Handler.success('User registered'));
+
+        branch.users.push(user._id);
+        Branch.update(branch.code, branch).then(x => {
+          return res(Handler.success('User registered', user));
+        }, x => res(Handler.warning('User added. But failed to save to branch')))
       });
     }, Handler.ctrlError(res)('Failed to look up Branch'));
   }); }
@@ -44,11 +50,12 @@ export namespace UserCtrl {
 
   export function getUsers(branch: string) { return new Promise(res => {
     if (branch === '') { return res(Handler.input('Need branch to collect users')); }
-    Branch.findOne({name: branch}).exec().then(_branch => {
+    Branch.findOne({code: branch}).exec().then(_branch => {
+      if (!_branch) { return res(Handler.input('No branch with code ' + branch)); }
       User.getUsers(_branch._id).then(users => {
         res(Handler.success(`Users from ${branch}`, users));
       }, Handler.ctrlError(res)('Failed to get Users'));
-    })
+    }, Handler.ctrlError(res)('Failed to get Branch'))
   }); }
 
   export function test() { return new Promise(res => {

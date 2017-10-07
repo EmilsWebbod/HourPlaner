@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+a {
+  &.link {
+    color: #007bff !important;
+    cursor: pointer;
+  }
+}

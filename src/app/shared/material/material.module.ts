@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {
   MdButtonModule,
-  MdCardModule,
+  MdCardModule, MdChipsModule,
   MdGridListModule,
   MdInputModule,
   MdSelectModule
@@ -13,7 +13,8 @@ import {
       MdGridListModule,
       MdInputModule,
       MdButtonModule,
-      MdSelectModule
+      MdSelectModule,
+      MdChipsModule
     ],
     declarations: [],
     exports: [
@@ -21,6 +22,7 @@ import {
       MdGridListModule,
       MdInputModule,
       MdButtonModule,
-      MdSelectModule
+      MdSelectModule,
+      MdChipsModule
     ]
 }) export class MaterialModule {}

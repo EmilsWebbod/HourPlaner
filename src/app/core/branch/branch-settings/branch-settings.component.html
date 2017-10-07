@@ -1,0 +1,61 @@
+<h2>Settings</h2>
+
+<div *ngIf="_branch.branch.$ | async; let branch">
+
+  <form #branch_form="ngForm" ngNativeValidate>
+    <button type="button" (click)="save(branch)">Save</button>
+
+    <md-form-field>
+      <input mdInput [(ngModel)]="branch.code" name="code" placeholder="Code" />
+    </md-form-field>
+
+    <md-form-field>
+      <input mdInput [(ngModel)]="branch.name" name="name" placeholder="Name" />
+    </md-form-field>
+
+    <br />
+
+    <md-form-field>
+      <input mdInput [(ngModel)]="branch.open_hours.open" name="open_hours.open"  placeholder="Opens format: hh:mm" />
+    </md-form-field>
+    <md-form-field>
+      <input mdInput [(ngModel)]="branch.open_hours.close" name="open_hours.close" placeholder="Closes format: hh:mm" />
+    </md-form-field>
+
+    <br />
+
+    <h3>Positions: </h3>
+    <md-form-field floatPlaceholder="never">
+      <md-chip-list mdPrefix #posList>
+        <md-chip *ngFor="let position of branch.positions; let i = index"
+                 (remove)="branch.positions.splice(i, 1)"
+        >{{ position }} <md-icon mdChipRemove>&times;</md-icon> </md-chip>
+      </md-chip-list>
+      <input mdInput placeholder="New position"
+             [mdChipInputFor]="posList"
+             [mdChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [mdChipInputAddOnBlur]="true"
+             (mdChipInputTokenEnd)="add(branch.positions, $event)" />
+    </md-form-field>
+
+    <br />
+
+    <ng-container *ngFor="let shift of branch.shifts; let i = index">
+      Shift {{ i }} :
+      <md-form-field >
+        <input mdInput [(ngModel)]="shift.start" [name]="'shift.start' + i" placeholder="Starts"/>
+      </md-form-field>
+
+      <md-form-field >
+      <input mdInput [(ngModel)]="shift.end" [name]="'shift.end' + i" placeholder="Ends"/>
+      </md-form-field>
+      <br />
+    </ng-container>
+    <button md-raised-button
+            (click)="branch.shifts.push({start: '00:00', end: '01:00'})"
+    >Add Shift</button>
+    <br />
+
+    <app-input-group [users]="branch.users" [(groups)]="branch.groups"></app-input-group>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const _ = require('ramda');
+import * as _ from 'ramda';
 import { IO } from './utils/functors';
 
 export namespace Folders {

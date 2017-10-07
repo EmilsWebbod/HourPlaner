@@ -6,6 +6,8 @@ import {CommonModule} from '@angular/common';
 import { RegisterComponent } from './menus/register/register.component';
 import { LoginComponent } from './menus/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RegisterBranchComponent } from './menus/register-branch/register-branch.component';
+import { InputGroupComponent } from './input/input-group/input-group.component';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   ],
   declarations: [
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterBranchComponent,
+    InputGroupComponent
   ],
   exports: [
     CommonModule,
@@ -26,7 +30,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MaterialModule,
 
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterBranchComponent,
+    InputGroupComponent
   ]
 })
 export class SharedModule {}

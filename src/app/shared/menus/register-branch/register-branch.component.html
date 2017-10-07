@@ -1,0 +1,12 @@
+<form #registerbranch="ngForm" (ngSubmit)="registerBranch(registerbranch)" ngNativeValidate>
+
+  <md-form-field>
+    <input mdInput ngModel name="code" placeholder="Code" />
+  </md-form-field>
+
+  <md-form-field>
+    <input mdInput ngModel name="name" placeholder="Name" />
+  </md-form-field>
+
+  <button md-raised-button>Add</button>
+</form>

@@ -1,4 +1,4 @@
-const _ = require('ramda');
+import * as _ from 'ramda';
 
 const inspect = function(x) {
   return (x && x.inspect) ? x.inspect() : x;

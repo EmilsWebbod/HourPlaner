@@ -126,7 +126,7 @@ export class ResponseService {
   private _getResponseValue(res: IResponse) {
     switch (res.status) {
       case STATUS.SUCCESS: return res.data || true;
-      case STATUS.INPUT: return res;
+      case STATUS.INPUT: return res.data || false;
       default: return false;
     }
   }

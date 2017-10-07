@@ -2,7 +2,7 @@
 import * as mongoose from 'mongoose';
 import * as passportLocalMongoose from 'passport-local-mongoose';
 import {Handler} from '../utils/handler';
-const _ = require('ramda');
+import * as _ from 'ramda';
 
 const Schema = mongoose.Schema;
 

@@ -1,6 +1,6 @@
 'use strict'
 
-const _ = require('ramda');
+import * as _ from 'ramda';
 
 import {Files, Folders} from '../files';
 const index = Files.getFileFromDist('index.html').unsafePerformIO();

@@ -1,8 +1,10 @@
 <h1>Home</h1>
 
 <md-select>
- <md-option *ngFor="let branch of branches" [routerLink]="branch.name">
-  {{ branch.name }}
+ <md-option *ngFor="let branch of _app.branches.$ | async" [routerLink]="branch.code">
+  {{ branch.code }} - {{ branch.name }}
  </md-option>
 </md-select>
+
+<app-register-branch></app-register-branch>
 

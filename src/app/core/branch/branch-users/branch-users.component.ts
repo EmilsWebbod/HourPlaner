@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EUSER_ROLES, UserService} from '../../../services/user.service';
+import {BranchService} from '../branch.service';
 
 @Component({
   selector: 'app-branch-users',
@@ -8,12 +9,9 @@ import {EUSER_ROLES, UserService} from '../../../services/user.service';
 })
 export class BranchUsersComponent implements OnInit {
 
-  users: Array<any> = [];
   user_roles = EUSER_ROLES;
 
-  constructor(private _users: UserService) { }
+  constructor(public _branch: BranchService) { }
 
-  ngOnInit() {
-    this._users.getUsers('611').then(x => this.users = x);
-  }
+  ngOnInit() {}
 }

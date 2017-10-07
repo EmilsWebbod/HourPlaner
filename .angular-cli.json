@@ -23,7 +23,9 @@
         "styles.scss",
         "angular.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/ramda/index.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -49,7 +51,9 @@
         "styles.scss",
         "angular.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/ramda/index.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of _branch.users.$ | async">
       <td>{{ user.username }}</td>
       <td>{{ user.name || ''}}</td>
       <td>{{ user_roles[user.state] }}</td>

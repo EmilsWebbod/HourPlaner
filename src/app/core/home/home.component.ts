@@ -9,11 +9,9 @@ import {AppService} from '../../services/app.service';
 })
 export class HomeComponent implements OnInit {
 
-  branches: Array<any> = [];
-
-  constructor(private _app: AppService) {}
+  constructor(public _app: AppService) {}
 
   ngOnInit() {
-    this._app.getBranches().then(x => this.branches = x);
+    this._app.getBranches().then(x => this._app.branches.prop = x);
   }
 }

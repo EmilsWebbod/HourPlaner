@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../../services/user.service';
 import {BranchService} from '../../../core/branch/branch.service';
+import * as R from 'ramda';
 
 @Component({
   selector: 'app-register',
@@ -27,10 +28,10 @@ export class RegisterComponent implements OnInit {
     const name = form.value.name;
     const role = form.value.role || 0;
 
-    this._user.register(this._branch.branch, username, role, name, password).then(x => {
-      console.log(x);
+    this._user.register(this._branch.branch.prop.code, username, role, name, password).then(x => {
       if (x) {
         form.resetForm();
+        this._branch.users.map(R.append(x));
       }
     });
     return false;

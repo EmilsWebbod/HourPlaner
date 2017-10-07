@@ -1,0 +1,21 @@
+<ul>
+  <li *ngFor="let group of _groups; let index = index">
+    {{ _groupNames[index] }} {{ _groupNames[index] === 'Group' ? index : '' }} <a class="link" (click)="removeGroup(index)">Delete</a>
+    <ul>
+      <li *ngFor="let user of group; let i = index">
+        {{ user.username }} - {{ user.name }}
+        <a class="link" (click)="removeUser(group, i)">Remove</a>
+      </li>
+    </ul>
+
+    <md-select *ngIf="_users && _users.length > 0">
+      <md-option *ngFor="let user of _users"
+                 (click)="addUser(index, user)"
+      >{{ user.username }} - {{ user.name }}</md-option>
+    </md-select>
+  </li>
+</ul>
+
+<br />
+
+<button md-raised-button (click)="addGroup()">Add Group</button>
