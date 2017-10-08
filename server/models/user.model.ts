@@ -31,8 +31,8 @@ const userSchema = new Schema({
     set: _.toLower
   },
   name: {type: String, default: 'No Name'},
-  branch: {type: String, ref: 'branch', default: ''},
-  skills: {type: [{type: String}], default: []},
+  branch: {type: Schema.Types.ObjectId, ref: 'branch', required: true},
+  positions: {type: [{type: Schema.Types.ObjectId, ref: 'position'}], default: []},
   state: {type: Number, default: 0},
   created: {type: Date, default: Date.now()}
 });
@@ -55,7 +55,9 @@ User.initUser = (data, branch) => new User({
   skills: data.skills || []
 });
 
-User.getUsers = branch => User.find({branch: branch}).exec();
+User.getUsers = branch => {
+  return User.find({branch: branch}).exec();
+};
 
 User.test = function() {
   return new Promise((res, rej) => {

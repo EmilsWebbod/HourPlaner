@@ -14,4 +14,14 @@ export class BranchUsersComponent implements OnInit {
   constructor(public _branch: BranchService) { }
 
   ngOnInit() {}
+
+  updateGroup(groups) {
+    this._branch.branch.map(x => {
+      x.groups = groups;
+      return x;
+    });
+    this._branch.updateBranch().then(x => {
+      console.log(x);
+    })
+  }
 }

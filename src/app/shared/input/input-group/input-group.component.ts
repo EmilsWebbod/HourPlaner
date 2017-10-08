@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit} from '@angular/core';
-import {notInList} from '../../utils/functional';
+import {groupTo2D, notInList} from '../../utils/functional';
 
 @Component({
   selector: 'app-input-group',
@@ -34,27 +34,18 @@ export class InputGroupComponent implements OnInit {
     if (this.users && this.users.length > 0) {
       this._users = this.users.filter(notInList(this.groups));
     }
-    this._groups = this.groups.reduce((n, o) => {
-      if (typeof n[o.group] === 'undefined') {
-        n[o.group] = [];
-        this._groupNames[o.group] = o.name || 'Group';
-      }
-      n[o.group].push(o.user);
-      return n;
-    }, []);
+    this._groups = this.groups.reduce(groupTo2D, []);
   }
 
-  addGroup() {
+  public addGroup() {
     this._groupNames.push('Group');
     this._groups.push([]);
     this.update();
   }
 
   removeGroup(i: number) {
-    console.log(i);
     this._deletedGroup = this._groups.splice(i, 1);
     this._groupNames.splice(i, 1);
-    console.log(this._groups);
     this.update();
   }
 

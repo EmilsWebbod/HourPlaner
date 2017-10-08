@@ -1,0 +1,46 @@
+
+<section>
+  Active key: {{ activeKey }} <br />
+  Mouse Down: {{ mouseActive }} <br />
+  Shift Active: {{ SHIFT }}
+</section>
+
+<section>
+  <md-tab-group>
+    <md-tab *ngFor="let section of sections; let i = index" [label]="section.start + ' - ' + section.end">
+      <div class="container-fluid">
+        <app-grid-row class="row">
+          <app-grid-header class="col-2">
+            User
+          </app-grid-header>
+          <app-grid-header *ngFor="let header of this._sectionsColumns[i]" class="col">
+            {{ header }}
+          </app-grid-header>
+        </app-grid-row>
+
+        <!-- Row of users -->
+        <app-grid-row *ngFor="let user of rows; let ui = index" class="row pb-2">
+          <app-grid-data class="col-2" [disabled]="true">
+            <i class="fa"
+               [ngClass]="{'fa-square-o': moveUser !== ui, 'fa-check-square-o': moveUser === ui}"
+               (click)="switchUser(ui)"
+            ></i>
+            {{ user.name }}
+            <i class="link" (click)="removeUser(ui, user)">&times;</i>
+          </app-grid-data>
+          <app-grid-data class="col" *ngFor="let data of this._sectionsColumns[i]; let di = index"
+                         [activeKey]="activeKey"
+                          [value]="getData(i, ui, di)"
+                         (dataChange)="dataChange(i, ui, di, $event)"
+          ></app-grid-data>
+        </app-grid-row>
+      </div>
+    </md-tab>
+    <md-tab label="Print">
+
+      <button md-raised-button (click)="download()">Download Excel</button>
+      <button md-raised-button (click)="print()">Print as Excel</button>
+    </md-tab>
+  </md-tab-group>
+</section>
+

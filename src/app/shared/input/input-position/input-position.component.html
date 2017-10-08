@@ -1,0 +1,60 @@
+
+<form class="row" #position_form="ngForm" ngNativeValidate (ngSubmit)="addPosition(position_form)">
+  <md-form-field class="col-4" [floatPlaceholder]="'never'">
+    <md-chip-list mdPrefix #iconList>
+      <md-chip *ngFor="let icon of position.icons; let i = index"
+               [removable]="true" (remove)="remove(i)"
+      >{{ icon }} <md-icon mdChipRemove>&times;</md-icon></md-chip>
+    </md-chip-list>
+    <input mdInput [mdChipInputFor]="iconList"
+           placeholder="Icons"
+           name="icons"
+           [mdChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           (mdChipInputTokenEnd)="add($event)"
+    />
+    <md-hint>Icon from Keyboard Keys. Press Enter to Add</md-hint>
+  </md-form-field>
+
+  <md-form-field class="col">
+    <input mdInput [ngModel]="position.label" name="label" placeholder="Label" required />
+  </md-form-field>
+
+  <div class="col">
+    <md-checkbox [ngModel]="position.isRequired" name="isRequired">Required</md-checkbox>
+  </div>
+
+  <div class="col">
+    <md-checkbox [ngModel]="position.isExpected" name="isExpected">Expected</md-checkbox>
+  </div>
+
+  <div class="col">
+    <button md-raised-button type="button"
+            (click)="addPosition(position_form)"
+    >{{ edit ? 'Edit' : 'Add' }}</button>
+  </div>
+</form>
+
+<table width="100%">
+  <thead>
+  <tr>
+    <th>Icons</th>
+    <th>Label</th>
+    <th>Required</th>
+    <th>Expected</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let position of positions; let i = index">
+    <td>{{ position.icons }}</td>
+    <td>{{ position.label }}</td>
+    <td><i class="fa fa-check" *ngIf="position.isRequired"></i></td>
+    <td><i class="fa fa-check" *ngIf="position.isExpected"></i></td>
+    <td>
+      <i class="fa fa-edit fa-2x" (click)="editPos(position, i)"></i>
+      <i class="fa fa-trash fa-2x" (click)="deletePos(position, i)"></i>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

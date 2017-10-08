@@ -1,9 +1,10 @@
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 
 export class Behavior<T> {
 
   private __ = new BehaviorSubject<T>(null);
-  public $ = this.__.asObservable();
+  public $: Observable<T> = this.__.asObservable();
 
   constructor(x: T) {
     this.__.next(x);

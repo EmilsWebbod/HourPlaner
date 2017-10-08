@@ -3,6 +3,7 @@ import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {isPlatformBrowser} from '@angular/common';
 import {Router} from '@angular/router';
+import {MdSnackBar} from '@angular/material';
 
 let self: ResponseService = null;
 
@@ -42,7 +43,9 @@ export class ResponseService {
   public response: IResponse = null;
   public loaderMessage = '';
 
-  constructor(@Inject(PLATFORM_ID) private platformId, private _router: Router) { self = this; }
+  constructor(@Inject(PLATFORM_ID) private platformId,
+              private _router: Router,
+              private _snack: MdSnackBar) { self = this; }
 
   public getLoader() { return this.loading$; }
   public pending() { return this._loading.getValue(); }
@@ -50,7 +53,10 @@ export class ResponseService {
   public isLoading() {return this._loading.getValue() === LOADER.LOADING; }
   public showMessage(type: string, msg: string, header: string) {
     if (isPlatformBrowser(this.platformId)) {
-
+      this._snack.open(msg, 'Ok', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
     }
   }
 
@@ -141,9 +147,7 @@ export class ResponseService {
    */
   private __base = (res: IResponse) => {
     self.response = res;
-    if (res.status !== STATUS.SUCCESS) {
-      self.showMessage(this._getResponseType(res.status), res.msg, this._getResponseMessageHeader(res.status));
-    }
+    self.showMessage(this._getResponseType(res.status), res.msg, this._getResponseMessageHeader(res.status));
     self.disable();
     return this._getResponseValue(res);
   }

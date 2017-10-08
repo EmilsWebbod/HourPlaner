@@ -20,6 +20,7 @@ export namespace Files {
 
   export const fromServer = file => path.join(__dirname, '..', 'dist-server', file);
   export const fromDist = file => path.join(__dirname, '..', 'dist', file);
+  export const fromFiles = file => path.join(__dirname, '..', 'files', file);
 
   export const getFileFromDist: (Function) => IO<any> =
     _.compose(Files.readFile, Files.fromDist);

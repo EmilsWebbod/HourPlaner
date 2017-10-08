@@ -28,11 +28,13 @@ export namespace UserCtrl {
   export function register(data) { return new Promise(res => {
     if (!data.username && !data.branch) { return res(Handler.input(MSG.I_default)); }
     if (!data.password) { data.password = data.username; }
-
+    console.log('1');
     Branch.findOne({code: data.branch}).then(branch => {
+      console.log('1');
       if (!branch) { return res(Handler.input('No branch with code ' + data.branch)); }
 
       User.register(User.initUser(data, branch._id), data.password, (err, user) => {
+        console.log('1');
         if (err || !user) { return Handler.ctrlError(res)(MSG.W_user_exist)(err); }
 
         branch.users.push(user._id);

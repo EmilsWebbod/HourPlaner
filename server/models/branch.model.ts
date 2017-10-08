@@ -8,6 +8,7 @@ export interface IBranchModel {
   code: string;
   name: string;
   created?: Date;
+  positions: Array<string | any>;
   open_hours: {open: string, close: string},
   shifts: Array<{start: string, end: string}>;
   groups: Array<Array<string>>;
@@ -30,7 +31,7 @@ const branchModel = new Schema({
   },
   name      : {type: String, default: 'No Name'},
   created   : {type: Date, default: Date.now()},
-  positions : {type: [ {type: String}], default: []},
+  positions : {type: [{type: Schema.Types.ObjectId, ref: 'position'}], default: []},
   open_hours: {type: {
     open:  {type: String},
     close: {type: String}
@@ -64,7 +65,9 @@ Branch.add = (data: IBranchModel) => { return new Promise((res, rej) => {
   });
 })};
 
-Branch.list = () => Branch.find({}).exec();
+Branch.list = () => {
+  return Branch.find({}).exec();
+};
 
 Branch.update = (code: string, data: IBranchModel) => {
   return Branch.findOneAndUpdate({code: code}, data).exec();

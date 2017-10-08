@@ -1,0 +1,23 @@
+<ng-container *ngFor="let shift of shifts; let i = index">
+  Shift {{ i }} :
+  <md-form-field >
+    <input mdInput
+           [(ngModel)]="shift.start"
+           [name]="'shift.start' + i"
+           placeholder="Starts"
+           (keyup)="update()"
+    />
+  </md-form-field>
+
+  <md-form-field >
+    <input mdInput
+           [(ngModel)]="shift.end"
+           [name]="'shift.end' + i"
+           placeholder="Ends"
+           (keyup)="update()"
+    />
+  </md-form-field>
+  <button md-raised-button (click)="splice(i)">Remove</button>
+  <br />
+</ng-container>
+<button md-raised-button (click)="add()">Add Shift</button>

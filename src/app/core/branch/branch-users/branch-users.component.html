@@ -1,19 +1,47 @@
 
-<app-register></app-register>
+<div class="container-fluid">
 
-<table>
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Name</th>
-      <th>Role</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of _branch.users.$ | async">
-      <td>{{ user.username }}</td>
-      <td>{{ user.name || ''}}</td>
-      <td>{{ user_roles[user.state] }}</td>
-    </tr>
-  </tbody>
-</table>
+  <section class="pb-2">
+    <md-card>
+      <md-card-content>
+        <app-register></app-register>
+      </md-card-content>
+    </md-card>
+  </section>
+
+  <section class="pb-2">
+    <md-card>
+      <md-card-content>
+        <table>
+          <thead>
+          <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Role</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of _branch.users.$ | async">
+            <td>{{ user.username }}</td>
+            <td>{{ user.name || ''}}</td>
+            <td>{{ user_roles[user.state] }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </md-card-content>
+    </md-card>
+  </section>
+
+  <section class="pb-2">
+    <md-card *ngIf="_branch.branch.$ | async; let branch">
+      <md-card-content>
+        <app-input-group #inputGroup [users]="branch.users" [(groups)]="branch.groups"></app-input-group>
+      </md-card-content>
+      <md-card-actions>
+        <button md-raised-button (click)="inputGroup.addGroup()">Add Group</button>
+        <button md-raised-button (click)="updateGroup(branch.groups)">Update</button>
+      </md-card-actions>
+    </md-card>
+  </section>
+
+</div>

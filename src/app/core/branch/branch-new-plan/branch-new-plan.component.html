@@ -1,1 +1,28 @@
 <h2>New Plan</h2>
+
+<div class="container-fluid" *ngIf="_branch.branch.$ | async; let branch">
+  <section>
+    <md-card>
+      <md-card-content>
+        <app-selector-user #userSelector
+                           [users]="branch.users"
+                           [groups]="branch.groups"
+                           (addUser)="addUser($event)"
+        ></app-selector-user>
+      </md-card-content>
+    </md-card>
+  </section>
+
+  <section>
+    <md-card>
+      <md-card-header>Valid inputs: Press key on keyboard to activate</md-card-header>
+      <md-card-content>
+        <span class="p-2" *ngFor="let input of branch.positions">{{input.icons}} - {{input.label}}</span>
+      </md-card-content>
+    </md-card>
+  </section>
+
+  <section>
+    <app-grid [sections]="branch.shifts" [rows]="users" (rowDeleted)="removeUser($event)"></app-grid>
+  </section>
+</div>

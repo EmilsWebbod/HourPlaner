@@ -8,6 +8,13 @@ import { LoginComponent } from './menus/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterBranchComponent } from './menus/register-branch/register-branch.component';
 import { InputGroupComponent } from './input/input-group/input-group.component';
+import { InputPositionComponent } from './input/input-position/input-position.component';
+import { InputShiftComponent } from './input/input-shift/input-shift.component';
+import { SelectorUserComponent } from './selector/selector-user/selector-user.component';
+import { GridPlanComponent } from './grid/grid-plan/grid-plan.component';
+import { GridHeaderComponent } from './grid/grid-header/grid-header.component';
+import { GridDataComponent } from './grid/grid-data/grid-data.component';
+import { GridRowComponent } from './grid/grid-row/grid-row.component';
 
 @NgModule({
   imports: [
@@ -21,7 +28,15 @@ import { InputGroupComponent } from './input/input-group/input-group.component';
     RegisterComponent,
     LoginComponent,
     RegisterBranchComponent,
-    InputGroupComponent
+    InputGroupComponent,
+    InputPositionComponent,
+    InputShiftComponent,
+    SelectorUserComponent,
+
+    GridPlanComponent,
+    GridHeaderComponent,
+    GridDataComponent,
+    GridRowComponent
   ],
   exports: [
     CommonModule,
@@ -32,7 +47,15 @@ import { InputGroupComponent } from './input/input-group/input-group.component';
     RegisterComponent,
     LoginComponent,
     RegisterBranchComponent,
-    InputGroupComponent
+    InputGroupComponent,
+    InputPositionComponent,
+    InputShiftComponent,
+    SelectorUserComponent,
+
+    GridPlanComponent,
+    GridHeaderComponent,
+    GridDataComponent,
+    GridRowComponent
   ]
 })
 export class SharedModule {}

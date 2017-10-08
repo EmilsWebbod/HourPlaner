@@ -28,6 +28,10 @@ export class ServerService {
     this._r.load(`Delete --- ${url}`);
     return this.withHandler(this._http.delete<IResponse>(url));
   }
+  public getFile = (url: string) => (data: any) => {
+    this._r.load(`File --- ${url} --- text`);
+    return this._http.post(url, data,{responseType: 'text'}).toPromise();
+  }
 
   /** Not using default handler. So Response is not a IResponse Object */
   public getWithHandler = handler => (url: string) => {
@@ -38,6 +42,8 @@ export class ServerService {
     this._r.load(`Post --- ${url}`);
     return this.noHandler(this._http.post<any>(url, data))(handler);
   }
+
+
 
   private toPromise   = http => catcher => handler => http.toPromise().then(handler).catch(catcher);
   private asPromise   = http => this.toPromise(http);

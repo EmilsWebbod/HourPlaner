@@ -7,6 +7,7 @@ import {ResponseService} from './response/response.service';
 import {UserService} from './user.service';
 import {AppService} from './app.service';
 import {BranchService} from '../core/branch/branch.service';
+import {GridService} from '../shared/grid/grid.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ export class ServiceModule {
         ServerService,
         UserService,
         AppService,
-        BranchService
+        BranchService,
+        GridService
       ]
     };
   }

@@ -1,16 +1,16 @@
 
 
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Behavior} from '../../shared/utils/behavior';
 import {ServerService} from '../../services/server.service';
+import {IUser, IBranch} from '../../shared/utils/interfaces';
 
 @Injectable()
 export class BranchService {
 
   private _url = '/api/branch/';
-  public branch = Behavior.of(null);
-  public users = Behavior.of([]);
+  public branch: Behavior<IBranch> = Behavior.of(null);
+  public users: Behavior<IUser> = Behavior.of([]);
 
   constructor(private _server: ServerService) {}
 
@@ -23,5 +23,10 @@ export class BranchService {
 
   public update(code: string, data: any) {
     return this.post(`update/${code}`)(data);
+  }
+
+  public updateBranch() {
+    const branch = this.branch.prop;
+    return this.post(`update/${branch.code}`)(branch);
   }
 }

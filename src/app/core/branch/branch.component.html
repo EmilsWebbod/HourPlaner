@@ -1,13 +1,15 @@
-<button md-raised-button [routerLink]="['./']">
-  Home
-</button>
-<button md-raised-button [routerLink]="['users']">
-  Users
-</button>
-<button md-raised-button [routerLink]="['new']">
-  New Plan
-</button>
-<button md-raised-button [routerLink]="['settings']">
-  Settings
-</button>
+<section class="container-fluid menu">
+    <button md-raised-button [routerLink]="['./']">
+      Home
+    </button>
+    <button md-raised-button [routerLink]="['new']">
+      New Plan
+    </button>
+    <button md-raised-button [routerLink]="['users']">
+      Users
+    </button>
+    <button md-raised-button [routerLink]="['settings']">
+      Settings
+    </button>
+</section>
 <router-outlet></router-outlet>

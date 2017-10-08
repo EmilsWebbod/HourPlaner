@@ -4,7 +4,8 @@ import {
   MdCardModule, MdChipsModule,
   MdGridListModule,
   MdInputModule,
-  MdSelectModule
+  MdSelectModule, MdSnackBarModule,
+  MdCheckboxModule, MdAutocompleteModule, MdTabsModule
 } from '@angular/material';
 
 @NgModule({
@@ -14,7 +15,11 @@ import {
       MdInputModule,
       MdButtonModule,
       MdSelectModule,
-      MdChipsModule
+      MdChipsModule,
+      MdSnackBarModule,
+      MdCheckboxModule,
+      MdAutocompleteModule,
+      MdTabsModule
     ],
     declarations: [],
     exports: [
@@ -23,6 +28,10 @@ import {
       MdInputModule,
       MdButtonModule,
       MdSelectModule,
-      MdChipsModule
+      MdChipsModule,
+      MdSnackBarModule,
+      MdCheckboxModule,
+      MdAutocompleteModule,
+      MdTabsModule
     ]
 }) export class MaterialModule {}

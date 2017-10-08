@@ -1,0 +1,7 @@
+<div *ngIf="!disabled" class="grid-data unselectable" [ngClass]="{'trans': _hover}">
+  {{ _hover ? activeKey : value }}
+</div>
+
+<div *ngIf="disabled" class="grid-data">
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,31 @@
+
+<div class="row">
+  <div class="col">
+    <form class="example-form">
+      <md-form-field class="w-100">
+        <input type="text"
+               placeholder="Search User"
+               aria-label="User"
+               mdInput
+               [formControl]="userControl"
+               (click)="resetFilter()"
+               [mdAutocomplete]="auto">
+        <md-autocomplete #auto="mdAutocomplete"
+                         (optionSelected)="select($event)"
+                         [displayWith]="reset"
+        >
+          <md-option *ngFor="let user of filteredUsers | async" [value]="user">
+            {{ user.username }} - {{ user.name }}
+          </md-option>
+        </md-autocomplete>
+      </md-form-field>
+    </form>
+  </div>
+  <div class="col">
+    <md-select class="w-100">
+      <md-option *ngFor="let group of _groups; let i = index" (click)="addGroup(group, i)">
+        Group {{ i }} {{ getLeader(group) }}
+      </md-option>
+    </md-select>
+  </div>
+</div>
